@@ -22,9 +22,9 @@ for BUILDPACK in $(cat $1/.buildpacks); do
     BUILDPACK=$(echo $BUILDPACK | cut -d"=" -f 2)
   fi
   
-  if [ $subdir == "" ]; then
+  if [ "$subdir" == "" ]; then
     # Skip root buildpacks for now
-    exit 0;
+    exit 0
   fi
 
   url=${BUILDPACK%#*}
