@@ -12,6 +12,7 @@ function indent() {
 
 unset GIT_DIR
 
+# Dokku will overwrite this file. Be sure to set
 BUILDPACK_FILE="${BUILDPACK_FILE:-.buildpacks}"
 
 for BUILDPACK in $(cat $1/$BUILDPACK_FILE); do
@@ -22,11 +23,6 @@ for BUILDPACK in $(cat $1/$BUILDPACK_FILE); do
   if [[ $BUILDPACK == *'='* ]]; then
     subdir=$(echo $BUILDPACK | cut -d"=" -f 1)
     BUILDPACK=$(echo $BUILDPACK | cut -d"=" -f 2)
-  fi
-  
-  if [ "$subdir" == "" ]; then
-    # Skip root buildpacks for now
-    continue
   fi
 
   url=${BUILDPACK%#*}
