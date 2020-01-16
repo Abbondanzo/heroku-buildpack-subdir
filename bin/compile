@@ -21,6 +21,11 @@ for BUILDPACK in $(cat $1/.buildpacks); do
     subdir=$(echo $BUILDPACK | cut -d"=" -f 1)
     BUILDPACK=$(echo $BUILDPACK | cut -d"=" -f 2)
   fi
+  
+  if [ $subdir == "" ]; then
+    # Skip root buildpacks for now
+    exit 0;
+  fi
 
   url=${BUILDPACK%#*}
   branch=${BUILDPACK#*#}
