@@ -12,6 +12,9 @@ function indent() {
 
 unset GIT_DIR
 
+echo "BUILDPACKS:"
+cat $1/.buildpacks
+
 for BUILDPACK in $(cat $1/.buildpacks); do
   dir=$(mktemp -t buildpackXXXXX)
   rm -rf $dir
@@ -24,7 +27,7 @@ for BUILDPACK in $(cat $1/.buildpacks); do
   
   if [ "$subdir" == "" ]; then
     # Skip root buildpacks for now
-    exit 0
+    continue
   fi
 
   url=${BUILDPACK%#*}
