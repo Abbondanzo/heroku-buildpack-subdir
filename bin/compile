@@ -12,11 +12,9 @@ function indent() {
 
 unset GIT_DIR
 
-echo "BUILDPACKS:"
-cat $1/.buildpacks
-echo "BUILD_DIR: $(ls -la $1)"
+BUILDPACK_FILE="${BUILDPACK_FILE:-.buildpacks}"
 
-for BUILDPACK in $(cat $1/.buildpacks); do
+for BUILDPACK in $(cat $1/$BUILDPACK_FILE); do
   dir=$(mktemp -t buildpackXXXXX)
   rm -rf $dir
 
