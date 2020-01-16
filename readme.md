@@ -4,6 +4,12 @@ Allows you to compose multiple buildpacks with apps in multiple directories. For
 
 This buildpack must be at index 1 and all buildpacks following should be at index 2 through N.
 
+## Dokku
+
+You can specify a custom file location for your `.buildpacks` configuration. Simply set the `BUILDPACK_FILE` environment variable with relative respect to your repository. If not set, this environment variable defaults to `.buildpacks`. 
+
+This was done because Dokku will automatically overwrite the `.buildpacks` file, rendering this buildpack process useless.
+
 ## Usage
 
     $ heroku buildpacks:set https://github.com/negativetwelve/heroku-buildpack-subdir
