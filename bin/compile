@@ -14,6 +14,7 @@ unset GIT_DIR
 
 echo "BUILDPACKS:"
 cat $1/.buildpacks
+echo "BUILD_DIR: $(ls -la $1)"
 
 for BUILDPACK in $(cat $1/.buildpacks); do
   dir=$(mktemp -t buildpackXXXXX)
